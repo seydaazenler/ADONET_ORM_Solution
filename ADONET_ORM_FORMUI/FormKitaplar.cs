@@ -1,6 +1,4 @@
-﻿using ADONET_ORM_BLL;
-using ADONET_ORM_Entities.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ADONET_ORM_BLL;
+using ADONET_ORM_Entities;
+using ADONET_ORM_Entities.Entities;
+using ADONET_ORM_Entities.ViewModels;
 
 namespace ADONET_ORM_FORMUI
 {
@@ -31,6 +33,47 @@ namespace ADONET_ORM_FORMUI
             TumKitaplariGrideViewModelleGetir();
             TumKitaplariSilComboyaGetir();
             TumKitaplariGuncelleComboyaGetir();
+
+            //comboBox'ların içine yazı yazılamasın diye comBox'ların style düzenlemesini yaptım
+            //1.Yöntem: comboların name'lerinden tek tek düzenlemek
+            comboBoxKitapGuncelle.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            //2. Yöntem: foreach ile for kontrolleri taranarak combo bulduğunda ilgili property ile düzenlemek
+
+            //Uzun yöntem
+            foreach (var item in this.Controls)
+            {
+                if (item is TabControl)
+                {
+                    foreach (var subitem in ((TabControl)item).Controls)
+                    {
+                        if (subitem is TabPage)
+                        {
+                            foreach (var subofsubitem in ((TabPage)subitem).Controls)
+                            {
+                                if(subofsubitem.GetType() == typeof(ComboBox))
+                                //if (subofsubitem is ComboBox)
+                                {
+                                    ((ComboBox)subofsubitem).DropDownStyle = ComboBoxStyle.DropDownList;
+                                }
+
+
+                            }
+                        }
+                    }l
+                }
+            }
+            //3.Yöntem
+            //for (int i = 0; i < this.Controls[0].Controls.Count; i++)
+            {
+                for (int k = 0; k < this.Controls[0].Controls[i].Controls.Count; k++)
+                {
+                    if (this.Controls[0].Controls[i].Controls[k] is ComboBox)
+                    {
+                        ((ComboBox)this.Controls[0].Controls[i].Controls[k]).DropDownStyle = ComboBoxStyle.DropDownList;
+                    }
+                }
+            }
         }
 
         private void TumKitaplariGuncelleComboyaGetir()
