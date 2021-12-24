@@ -60,11 +60,11 @@ namespace ADONET_ORM_FORMUI
 
                             }
                         }
-                    }l
+                    }
                 }
             }
             //3.Yöntem
-            //for (int i = 0; i < this.Controls[0].Controls.Count; i++)
+            for (int i = 0; i < this.Controls[0].Controls.Count; i++)
             {
                 for (int k = 0; k < this.Controls[0].Controls[i].Controls.Count; k++)
                 {
